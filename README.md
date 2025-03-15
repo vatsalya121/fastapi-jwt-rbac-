@@ -25,50 +25,54 @@ A RESTful API built with **FastAPI** that implements **JWT authentication** and 
    git clone https://github.com/your-username/fastapi-jwt-rbac.git
    cd fastapi-jwt-rbac
    ```
-2. ***Set Up a Virtual Environment***:
+2. **Set Up a Virtual Environment**:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. ***Install Dependencies***:
-   ```
+3. **Install Dependencies**:
+   ```bash
    pip install -r requirements.txt
    ```
-4. ***Set Up the Database***:
-   Install PostgreSQL and create a database named fastapi_jwt_rbac.
-   Update the .env file with your database credentials:
-   ```
+4. **Set Up the Database**:
+   Install PostgreSQL and create a database named `fastapi_jwt_rbac`.
+   Update the `.env` file with your database credentials.
+   ```bash
    pip install -r requirements.txt
    ```
-5. ***Run the Application***:
-   ```
+5. **Run the Application**:
+   ```bash
    uvicorn app.main:app --reload
    ```
-6. ***Access the API***:
-   Open your browser and navigate to http://127.0.0.1:8000/docs to view the Swagger UI documentation.
+6. **Access the API**:
+   Open your browser and navigate to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to view the Swagger UI documentation.
 
+## API Endpoints
 
-##API Endpoints
-###User Registration
--####POST /register
- ***Body***:
- ```json
- {
+### User Registration
+#### **POST /register**
+
+**Body**:
+```json
+{
   "username": "admin",
   "password": "admin123",
   "role": "admin"
 }
 ```
-###User Login
--####POST /login
- ***Body***:
- ```json
+
+### User Login
+#### **POST /login**
+
+**Body**:
+```json
 {
   "username": "admin",
   "password": "admin123"
 }
 ```
-***Response***:
+
+**Response**:
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -76,62 +80,55 @@ A RESTful API built with **FastAPI** that implements **JWT authentication** and 
 }
 ```
 
-###Projects
-1)GET /projects (Requires JWT)
+### Projects
+1. **GET /projects** (Requires JWT)
+   
+   Returns a list of all projects.
 
-Returns a list of all projects.
+2. **POST /projects** (Admin only)
 
-2)POST /projects (Admin only)
-
-***Body***
+**Body**:
 ```json
 {
   "name": "Updated Project A",
   "description": "Updated description"
 }
 ```
-3)PUT /projects/{project_id} (Admin only)
 
-***Body***:
+3. **PUT /projects/{project_id}** (Admin only)
+
+**Body**:
 ```json
 {
   "name": "Updated Project A",
   "description": "Updated description"
 }
 ```
-4)DELETE /projects/{project_id} (Admin only)
+
+4. **DELETE /projects/{project_id}** (Admin only)
 
 Deletes the project with the specified ID.
 
+## Testing the API
 
-##Testing the API
+### Using Postman
+1. Import the Postman collection (if available).
+2. Set the `base_url` environment variable to `http://127.0.0.1:8000`.
+3. Use the `/register` endpoint to create a new user.
+4. Use the `/login` endpoint to get a JWT token.
+5. Use the token to access protected endpoints (e.g., `/projects`).
 
-###Using Postman
-1) Import the Postman collection (if available).
+## Video Demonstration
 
-2) Set the base_url environment variable to http://127.0.0.1:8000.
+## Additional Configurations
 
-3) Use the /register endpoint to create a new user.
+### Environment Variables
+- `DATABASE_URL`: PostgreSQL connection string.
+- `JWT_SECRET_KEY`: Secret key for signing JWT tokens.
+- `JWT_ALGORITHM`: Algorithm for JWT token signing (default: HS256).
+- `JWT_EXPIRE_MINUTES`: Token expiration time in minutes.
 
-4) Use the /login endpoint to get a JWT token.
-
-5) Use the token to access protected endpoints (e.g., /projects).
-
-##Video Demonstration
-
-##Additional Configurations
-
-###Environment Variables
-DATABASE_URL: PostgreSQL connection string.
-
-JWT_SECRET_KEY: Secret key for signing JWT tokens.
-
-JWT_ALGORITHM: Algorithm for JWT token signing (default: HS256).
-
-JWT_EXPIRE_MINUTES: Token expiration time in minutes.
-
-
-###Deployment
+### Deployment
 Deploy the API to a cloud platform like Heroku, Render, or AWS.
 
 Set up environment variables in the deployment environment.

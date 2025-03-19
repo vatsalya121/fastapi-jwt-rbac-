@@ -118,8 +118,6 @@ Deletes the project with the specified ID.
 4. Use the `/login` endpoint to get a JWT token.
 5. Use the token to access protected endpoints (e.g., `/projects`).
 
-## Video Demonstration
-- https://drive.google.com/file/d/15UxIVtrzdmLnf-n77Bln-JgPPwrFpEjB/view?usp=sharing
 ## Additional Configurations
 
 ### Environment Variables
